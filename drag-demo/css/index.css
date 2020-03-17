@@ -1,0 +1,37 @@
+@charset 'utf-8';
+
+* {margin: 0; padding: 0;}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #666666;
+    cursor: move;
+    background: pink;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.btn {
+    width: 20px;
+    height: 20px;
+    background: #666666;
+    cursor: nwse-resize;
+    position: absolute;
+}
+.tr-btn, .bl-btn {
+    cursor: nesw-resize;
+}
+.tl-btn, .tr-btn {
+    top: -10px;
+}
+.tr-btn, .br-btn {
+    right: -10px;
+}
+.bl-btn, .br-btn {
+    bottom: -10px;
+}
+.tl-btn, .bl-btn {
+    left: -10px;
+}
