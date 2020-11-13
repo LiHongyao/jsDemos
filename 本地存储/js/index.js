@@ -7,7 +7,7 @@
 
 
     // 倒计时
-    let targetDate  = new Date("February, 28, 2020");
+    let targetDate  = new Date("February, 12, 2021");
     let currentDate = new Date();
     let aTimeItems  = document.querySelectorAll('.time-item');
     let minus    = 0,

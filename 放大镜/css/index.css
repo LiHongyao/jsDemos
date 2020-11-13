@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+img {
+    width: inherit;
+    height: inherit;
+    vertical-align: middle;
+    border: 1px solid #eeeeee;
+}
+
+.container {
+    position: relative;
+}
+
+.small-box {
+    width: 250px;  
+    height: 215px;
+    position: relative;
+}
+
+.mirror {
+    width: 130px;
+    height: 112px;
+    background: #ffffcc;
+    border: 1px solid #cccccc;
+    cursor: move;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.big-box {
+    display: none;
+    width: 400px;
+    height: 336px;
+    overflow: hidden;
+    border: 1px solid #cccccc;
+    position: absolute;
+    top: 0;
+    left: 250px;
+}
+
+.big-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .container {
-    width: 500px;
+    
     margin: 100px auto;
     text-align: center;
 }
@@ -13,10 +13,11 @@
 }
 
 .countdown-box {
+    width: 500px;
+    margin: 50px auto;
     display: flex;
     display: -webkit-flex;
     justify-content: space-around;
-    margin-top: 50px;
 }
 .countdown-item {
     display: flex;
