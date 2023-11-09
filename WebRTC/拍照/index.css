@@ -1,0 +1,15 @@
+.action-btns {
+  margin-bottom: 16px;
+}
+
+video {
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  border: 1px dashed #ccc;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}

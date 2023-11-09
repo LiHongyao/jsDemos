@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音频录制</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <!-- 按钮 -->
+  <div style="margin-bottom: 16px;">
+    <button id="btn_start" onclick="startRecording()">开始录制</button>
+    <button id="btn_pause" disabled onclick="pauseRecording()">暂停录制</button>
+    <button id="btn_resume" disabled onclick="resumeRecording()">继续录制</button>
+    <button id="btn_stop" disabled onclick="stopRecording()">停止录制</button>
+  </div>
+  <!-- 音频输出 -->
+  <audio id="recordedAudio" controls></audio>
+
+  <script>
+
+    let mediaStream;
+    let mediaRecorder;
+    let mediaRecorderBlobs = [];
+
+    const btnStart = document.getElementById('btn_start');
+    const btnPause = document.getElementById('btn_pause');
+    const btnResume = document.getElementById('btn_resume');
+    const btnStop = document.getElementById('btn_stop');
+
+    const recordedAudio = document.getElementById('recordedAudio');
+
+    // 1. 开始录制
+    async function startRecording() {
+      try {
+        // -- 每次录制之前，清空上一次的记录
+        mediaRecorderBlobs = [];
+        // -- 获取流媒体
+        mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // -- 初始化媒体录制器
+        mediaRecorder = new MediaRecorder(mediaStream);
+        // -- 接收到数据时存储
+        mediaRecorder.ondataavailable = event => {
+          if (event.data.size > 0) {
+            mediaRecorderBlobs.push(event.data);
+          }
+        };
+        // -- 监听停止
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(mediaRecorderBlobs, { type: 'audio/wav' });
+          const audioUrl = URL.createObjectURL(audioBlob);
+          recordedAudio.src = audioUrl;
+        };
+
+        // -- 开始录制
+        mediaRecorder.start();
+
+        // -- 修改按钮状态
+        btnStart.disabled = true;
+        btnStop.disabled = btnPause.disabled = false;
+      } catch (error) {
+        console.error('无法获取音频流：', error);
+      }
+    }
+    // 2. 暂停录制
+    function pauseRecording() {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.pause();
+        btnResume.disabled = false;
+        btnPause.disabled = true;
+      }
+    }
+
+    // 3. 继续录制
+    function resumeRecording() {
+      if (mediaRecorder && mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        btnResume.disabled = true;
+        btnPause.disabled = false;
+      }
+    }
+
+    // 4. 停止录制
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        btnStart.disabled = false;
+        btnStop.disabled = btnPause.disabled = btnResume.disabled = true;
+      }
+    }
+  </script>
+</body>
+
+</html>

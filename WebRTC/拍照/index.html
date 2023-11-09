@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js调用摄像头拍照</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <!-- 操作按钮 -->
+  <div class="action-btns">
+    <button onclick="openCamera()">开启摄像头</button>
+    <button onclick="closeCamera()">关闭摄像头</button>
+    <button onclick="takePhoto()">拍照</button>
+    <button onclick="download()">下载</button>
+  </div>
+  <!-- 视频采集区域 -->
+  <video id="video" autoplay muted></video>
+  <!-- 图片回显区域 -->
+  <img id="photo" />
+  <script src="./index.js"></script>
+</body>
+
+</html>
