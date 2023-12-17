@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+img {
+  max-width: 100%;
+}
+
+.triggerButton {
+  cursor: pointer;
+  background: #4169e1;
+  color: #fff;
+  padding: 8px 12px;
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  z-index: 10000001;
+}
